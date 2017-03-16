@@ -1,0 +1,28 @@
+<!-- main.cshtml -->
+
+<h1>api: https://goo.gl/fu99Vh </h1>
+
+<!-- Sitecore field helper can also render a field of items other than the context item -->
+<div id="header">
+	<a href="/">  
+		@Html.Sitecore().Field("Logo", Sitecore.Context.Database.GetItem("/sitecore/Content/Global/Configurations"))
+		<!-- @Html.Sitecore().Field(<field name>, Sitecore.Context.Database.GetItem(<ItemId or path of item>)). -->
+		<!-- Here, the Sitecore.Context.Database.GetItem() method provides the Sitecore.Data.Items.Item object, which has a collection of all the field values associated with the item.  -->
+	</a>
+</div>
+
+ <!-- Sitecore field helper render context item -->
+<div id="contentarea">
+	<h1>@Html.Sitecore().Field("Title")</h1>
+	@Html.Sitecore().Field("Body")
+</div>
+
+
+
+<div id="sidemenu">
+	@Html.Sitecore().Rendering("{2383A57F-21FF-4A77-9E2AC467F0CEDA57}")
+</div>
+
+<div id="footer">
+	@Html.Sitecore().Field("Copyright Text", Sitecore.Context.Database.GetItem("/sitecore/Content/Global/Confi gurations"))
+</div> 
