@@ -1,0 +1,43 @@
+language-integrated query (LINQ) API to make queries in order to
+search and apply sorting and paging the results
+
+
+<h1>Make sure you index the item first, DEVELOPER->Rebuild index </h1>
+
+public List<SearchResultItem> SearchBook(string str, string
+orderBy, int pageSize, int pageNo, out int totalResults)
+{
+  string index = string.Format("sitecore_{0}_index",
+  Sitecore.Context.Database.Name);
+  using (var context = ContentSearchManager.GetIndex(index).CreateSearchContext())
+  {
+    var query = context.GetQueryable<SearchResultItem>()
+    .Where(p => p.Path.StartsWith("/sitecore/Content/home"))
+    .Where(p => p.TemplateName == "book")
+    .Where(p => p.Name.Contains(str));
+
+    totalResults = query.Count();
+
+    if (!string.IsNullOrEmpty(orderBy)) {
+      if (orderBy == "name")
+      query = query.OrderBy(p => p.Name);
+      else if (orderBy == "date")
+      query = query.OrderBy(p => p.Updated);
+    }
+    query = query.Page(pageNo - 1, pageSize);
+    return query.ToList();
+  }
+}
+
+
+example: 
+List<SearchResultItem> list = SearchBook("truth", "name", 10, 1,
+out totalResults);
+
+You can also perform multi-field sorting using OrderBy(t => t.Name).ThenBy(i =>
+i.Updated) and can even change the sort direction using the
+query.orderByDescending(t => t.Name).ThenByDescending(I => i.Updated)
+method.
+
+As an alternative for the query.Page() method for the pagination, we can also use the
+query.Skip(skipRecords).Take(pageSize) method.

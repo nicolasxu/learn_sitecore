@@ -1,0 +1,25 @@
+we will create multiple sites that can be configured on both 
+content management (CM) and 
+content delivery (CD) Sitecore instances.
+
+
+In sitecore.config file,
+there is <site> node. One node for each site. Just duplicate one site node and then edit it. 
+location: C:\inetpub\wwwroot\local.henryford.com\Website\App_Config
+example: 
+
+  <sites>
+    <site name="shell" virtualFolder="/sitecore/shell" physicalFolder="/sitecore/shell" rootPath="/sitecore/content" startItem="/home" language="en" database="core" domain="sitecore" loginPage="/sitecore/login" content="master" contentStartItem="/Home" enableWorkflow="true" enableTracking="false" analyticsDefinitions="content" xmlControlPage="/sitecore/shell/default.aspx" browserTitle="Sitecore" htmlCacheSize="10MB" registryCacheSize="15MB" viewStateCacheSize="1MB" xslCacheSize="25MB" disableBrowserCaching="true" />
+    <site name="login" virtualFolder="/sitecore/login" physicalFolder="/sitecore/login" enableTracking="false" database="core" domain="sitecore" disableXmlControls="true" />
+    <site name="admin" virtualFolder="/sitecore/admin" physicalFolder="/sitecore/admin" enableTracking="false" enableWorkflow="true" domain="sitecore" loginPage="/sitecore/admin/login.aspx" />
+    <site name="service" enableTracking="true" virtualFolder="/sitecore/service" physicalFolder="/sitecore/service" />
+    <site name="modules_shell" virtualFolder="/sitecore modules/shell" physicalFolder="/sitecore modules/shell" rootPath="/sitecore/content" startItem="/home" language="en" database="core" domain="sitecore" content="master" enableTracking="false" enableWorkflow="true" />
+    <site name="modules_website" virtualFolder="/sitecore modules/web" physicalFolder="/sitecore modules/web" rootPath="/sitecore/content" startItem="/home" language="en" database="web" domain="extranet" allowDebug="true" cacheHtml="true" />
+    <site name="website" enableTracking="true" virtualFolder="/" physicalFolder="/" rootPath="/sitecore/content" startItem="/home" database="web" domain="extranet" allowDebug="true" cacheHtml="true" htmlCacheSize="50MB" registryCacheSize="0" viewStateCacheSize="0" xslCacheSize="25MB" filteredItemsCacheSize="10MB" enablePreview="true" enableWebEdit="true" enableDebugger="true" disableClientData="false" cacheRenderingParameters="true" renderingParametersCacheSize="10MB" />
+    <site name="scheduler" enableTracking="false" domain="sitecore" />
+    <site name="system" enableTracking="false" domain="sitecore" />
+    <site name="publisher" domain="sitecore" enableTracking="false" enableWorkflow="true" />
+  </sites>
+
+
+
