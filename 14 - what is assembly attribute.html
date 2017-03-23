@@ -1,0 +1,10 @@
+<h1>source: http://stackoverflow.com/questions/7954424/what-does-the-assembly-keyword-mean-in-the-assemblyinfo-cs-does-it-permit-to-us
+</h1>
+
+Attributes are always applied to an element (e.g. a method, property). 
+
+
+using System.Reflection;
+[assembly:AssemblyTitle("My Assembly")]
+
+It specifies that the attribute applies to the assembly itself, and not to any of the types within the assembly. Some other attribute targets are module, return and param.
