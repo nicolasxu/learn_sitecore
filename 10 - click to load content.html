@@ -1,7 +1,7 @@
 @model SitecoreCookbook.Models.ItemList
 <script language="javascript">
   function LoadAsync(url) {
-    $j = jQuery.noConflict();
+    var $j = jQuery.noConflict();
     $j.get(url, function (data, status) {
       $j("#productcontent").html(data); 
     });

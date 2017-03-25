@@ -1,0 +1,25 @@
+
+<h3>source:</h3>
+<h1>https://msdn.microsoft.com/en-us/library/system.serializableattribute(v=vs.110).aspx</h1>
+
+
+Indicates that a class can be serialized (save to disk). This class cannot be inherited.
+
+Apply the SerializableAttribute attribute to a type to indicate that instances of this type can be serialized. 
+When you apply the SerializableAttribute attribute to a type, all private and public fields are serialized by default
+ You can control serialization more granularly by implementing the ISerializable interface to override the serialization process.
+
+
+
+<script lang="csharp">
+  
+// example
+[Serializable()]    
+public class TestSimpleObject  {
+  public int member1;
+  public string member2;
+  public void Print() {}
+}
+
+
+</script>
