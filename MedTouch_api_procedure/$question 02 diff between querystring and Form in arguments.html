@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using MedTouch.Core;
+
+[assembly: MRegisterApiController(typeof (nhrmc.org.Website.WebApi.TestDemo))]
+namespace nhrmc.org.Website.WebApi
+{
+    public class TestDemo : MApiController, IMApiGetAction
+    {
+        public string Get(MApiArgs arguments)
+        {
+            string formAbc = arguments.Form["abc"]; //??
+            string qsAbc = arguments.QueryString["abc"]; //??
+            string whatisit = Sitecore.Context.Site.StartPath;
+            Console.WriteLine(whatisit);
+            List<string> greetings = new List<string>();
+            greetings.Add("hello");
+            greetings.Add("World");
+            return this.Json(greetings, System.Net.HttpStatusCode.OK);
+        }
+    }
+}
+
+
+/* 
+
+http://local.nhintranet.org/mapi/public/TestDemo.json?abc=nicolasxu
+then
+arguments.QueryString["abc"] will be "nicolasxu"
+arguments.Form["abc"] is null
+
+looks like arguments.Form["abc"] is parsing only the form encoded value
+
+
+
+
+*/
