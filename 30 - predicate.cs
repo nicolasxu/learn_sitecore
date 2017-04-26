@@ -8,8 +8,8 @@
 
 var predicate = PredicateBuilder.True<BaseSearchResultItem>();
 
-                predicate = ids.Aggregate(predicate, 
-                    (current, id) => current.Or(p => p.TemplateId == id));
+                predicate = ids.Aggregate(predicate /* initial value for aggregate */, 
+                    (current /* cumulative value */, id /* next value */) => current.Or(p => p.TemplateId == id));
 
 query = (IQueryable<BaseSearchResultItem>)query.Where(predicate);
 
