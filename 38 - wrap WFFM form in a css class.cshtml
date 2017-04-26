@@ -1,0 +1,38 @@
+<!-- Method 1 -->
+<!-- MammographyContentDisplay.cshtml -->
+@model MedTouch.Common.Items.IPageData
+
+<div class="text-block content-display">
+    @if (Html.IsExperienceEditor())
+    {
+        using (Html.BeginEditFrame("/sitecore/content/Applications/WebEdit/Edit Frame Buttons/Content Properties"))
+        {
+            <span class="page-editor-edit-button"><h3>Edit Content Properties</h3></span>
+        }
+    }
+
+    @if (Model.Headline.IsNotNullOrEmptyOrWhiteSpace())
+    {
+        <h1>
+            @Model.Headline
+        </h1>
+    }
+    @Model.ContentCopy
+    <div class="hf-mammography-form">
+        @Html.Sitecore().Placeholder("Mammography Form")
+    </div>
+</div>
+
+<!-- Method 2 -->
+
+<div class="eight columns newsletter">
+    <div class="border-wrapper">
+        <div class="seven columns">
+            <asp:Literal runat="server" ID="litNewsletterIntro"></asp:Literal>
+        </div>
+        <div class="five columns signup newsletter-signup-form">
+            
+            <wffm:FormRender ID="FormRender1" FormID="{E182B8B8-29CC-4F76-B8C6-F092A1C1BC88}" runat="server" FormTemplate="/sitecore modules/web/Web Forms for Marketers/Control/SitecoreSimpleFormAscx.ascx"/>
+        </div>
+    </div>
+</div>
